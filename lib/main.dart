@@ -3,7 +3,6 @@ import "vocs.dart";
 import 'package:flutter/material.dart';
 import "package:objectbox/objectbox.dart";
 
-const heading = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
 late ObjectBox objectbox;
 late Box<Voc> vocBox; 
@@ -20,6 +19,9 @@ Future<void> main() async {
     brightness: Brightness.dark,
     useMaterial3: true,
     fontFamily: 'Inter',
+    textTheme: const TextTheme(
+      headlineLarge: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)
+    )
   );
 
   runApp(FrenchscapeApp(theme: theme));
@@ -110,9 +112,9 @@ class _VocPageState extends State<VocPage> {
       child: Stack(children: [
         Center(child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
-            Text('Vocabulary', style: heading),
-            Text('Tap the New Button to create a new Vocabulary Set.')
+          children: [
+            Text('Vocabulary', style: Theme.of(context).textTheme.headlineLarge!),
+            const Text('Tap the New Button to create a new Vocabulary Set.')
           ],
         )),
         Positioned(
@@ -145,78 +147,86 @@ class _VocNewPageState extends State<VocNewPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: ConstrainedBox(
-        constraints: const BoxConstraints(minWidth: 100, maxWidth: 450),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-          child: Form(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text("New Vocabulary Set", style: heading),
-                const Text("Create a new Vocabulary Set"),
-                const SizedBox(height: 40),
-                Stack(
-                  children: [
-                    TextFormField(
-                      decoration: const InputDecoration(
-                        hintText: "Title",
-                        border: OutlineInputBorder()
-                      )
-                    ),
-                    Positioned(
-                      right: 5,
-                      top: 4,
-                      child: DropdownButton(
-                        value: selectedLang,
-                        items: langs.asMap().entries.map<DropdownMenuItem<int>>((entry) => 
-                          DropdownMenuItem<int>(value: entry.key, child: entry.value)).toList(),
-                        onChanged: (int? value) => setState(() => selectedLang = value!),
-                        underline: const SizedBox() 
-                      ),
-                    )
-                  ]
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    hintText: "Description",
-                    border: OutlineInputBorder(),
-                  ),
-                  maxLines: 4
-                ),
-                const SizedBox(height: 20),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    hintText: "Author",
-                    border: OutlineInputBorder(),
-                  )
-                ),
+    return LayoutBuilder(builder: _build);
+  }
 
-                const SizedBox(height: 40),
-                Row(
+  Widget _build(BuildContext context, BoxConstraints viewport) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Center(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minWidth: 100, maxWidth: 450, minHeight: viewport.maxHeight),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+              child: Form(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    FilledButton(
-                      child: const Text("Create"),
-                      onPressed: () {}
+                    Text("New Vocabulary Set", style: Theme.of(context).textTheme.headlineLarge!),
+                    const Text("Create a new Vocabulary Set"),
+                    const SizedBox(height: 40),
+                    Stack(
+                      children: [
+                        TextFormField(
+                          decoration: const InputDecoration(
+                            hintText: "Title",
+                            border: OutlineInputBorder()
+                          )
+                        ),
+                        Positioned(
+                          right: 5,
+                          top: 4,
+                          child: DropdownButton(
+                            value: selectedLang,
+                            items: langs.asMap().entries.map<DropdownMenuItem<int>>((entry) => 
+                              DropdownMenuItem<int>(value: entry.key, child: entry.value)).toList(),
+                            onChanged: (int? value) => setState(() => selectedLang = value!),
+                            underline: const SizedBox() 
+                          ),
+                        )
+                      ]
                     ),
-                    const SizedBox(width: 10),
-                    OutlinedButton(
-                      child: const Text("Back"),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      }
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        hintText: "Description",
+                        border: OutlineInputBorder(),
+                      ),
+                      maxLines: 4
+                    ),
+                    const SizedBox(height: 20),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                        hintText: "Author",
+                        border: OutlineInputBorder(),
+                      )
+                    ),
+
+                    const SizedBox(height: 40),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FilledButton(
+                          child: const Text("Create"),
+                          onPressed: () {}
+                        ),
+                        const SizedBox(width: 10),
+                        OutlinedButton(
+                          child: const Text("Back"),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          }
+                        )
+                      ]
                     )
                   ]
                 )
-              ]
+              )
             )
           )
         )
-      ))
+      )
     );
   }
 }
