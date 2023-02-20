@@ -1,5 +1,6 @@
 import "main.dart";
 
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import "package:flutter/material.dart";
 import "package:objectbox/objectbox.dart";
 
@@ -32,6 +33,18 @@ class Setting {
 
     settingBox.put(Setting(id: 1, value: value));
   }
+
+  static Color get colorSchemeSeed {
+    return Color(int.parse(
+      settingBox.get(2)?.value ?? Colors.purple.value.toString()
+    ));
+  }
+
+  static set colorSchemeSeed(Color seed) {
+    colorSchemeSeedNotifier.value = seed;
+
+    settingBox.put(Setting(id: 2, value: seed.value.toString()));
+  }
 }
 
 class SettingsPage extends StatefulWidget {
@@ -40,6 +53,25 @@ class SettingsPage extends StatefulWidget {
   @override
   State<SettingsPage> createState() => _SettingsPageState();
 }
+
+const List<Color> colors = [
+  Colors.red,
+  Colors.pink,
+  Colors.purple,
+  Colors.deepPurple,
+  Colors.indigo,
+  Colors.blue,
+  Colors.lightBlue,
+  Colors.cyan,
+  Colors.teal,
+  Colors.green,
+  Colors.lightGreen,
+  Colors.lime,
+  Colors.yellow,
+  Colors.amber,
+  Colors.orange,
+  Colors.deepOrange,
+];
 
 class _SettingsPageState extends State<SettingsPage>{
   @override
@@ -97,7 +129,15 @@ class _SettingsPageState extends State<SettingsPage>{
                       Setting.appearance = appearance!;
                     });
                   }
-                )
+                ),
+                const SizedBox(height: 10),
+                BlockPicker(
+                  availableColors: colors,
+                  pickerColor: Setting.colorSchemeSeed,
+                  onColorChanged: (Color c) {
+                    Setting.colorSchemeSeed = c; 
+                  },
+                ),
               ]
             )
           )

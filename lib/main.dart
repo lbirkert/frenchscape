@@ -31,9 +31,9 @@ class ObjectBox {
 }
 
 late ValueNotifier<ThemeMode> themeNotifier;
+late ValueNotifier<Color> colorSchemeSeedNotifier;
 
 final theme = ThemeData(
-  brightness: Brightness.light,
   useMaterial3: true,
   fontFamily: 'Inter',
   textTheme: const TextTheme(
@@ -56,6 +56,7 @@ Future<void> main() async {
   objectbox = await ObjectBox.create();
 
   themeNotifier = ValueNotifier<ThemeMode>(Setting.appearance);
+  colorSchemeSeedNotifier = ValueNotifier<Color>(Setting.colorSchemeSeed);
 
   runApp(const FrenchscapeApp());
 }
@@ -65,17 +66,24 @@ class FrenchscapeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<ThemeMode>(
-      valueListenable: themeNotifier,
-      builder: (_, ThemeMode currentMode, __) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: theme,
-          darkTheme: darkTheme,
-          themeMode: currentMode,
-          home: const Frenchscape()
-        );
-      }
+    return ValueListenableBuilder<Color>(
+      valueListenable: colorSchemeSeedNotifier,
+      builder: (_, Color seed, __) =>
+        ValueListenableBuilder<ThemeMode>(
+          valueListenable: themeNotifier,
+          builder: (_, ThemeMode currentMode, __) =>
+            MaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: theme.copyWith(
+                colorScheme: ColorScheme.fromSeed(seedColor: seed)
+              ),
+              darkTheme: darkTheme.copyWith(
+                colorScheme: ColorScheme.fromSeed(seedColor: seed, brightness: Brightness.dark)
+              ),
+              themeMode: currentMode,
+              home: const Frenchscape()
+            )
+      )
     );
   }
 }
