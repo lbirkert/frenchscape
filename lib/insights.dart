@@ -6,7 +6,7 @@ class InsightsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
       child: Center(child: Column(
         children: [
           Text("Insights", style: Theme.of(context).textTheme.headlineLarge!),

@@ -71,10 +71,10 @@ class VocPage extends StatefulWidget {
 class _VocPageState extends State<VocPage> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Stack(children: [
-        Center(child: Column(
+    return Stack(children: [
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+        child: Center(child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text('Vocabulary', style: Theme.of(context).textTheme.headlineLarge!),
@@ -82,21 +82,20 @@ class _VocPageState extends State<VocPage> {
             const Text('Tap the New Button to create a new Vocabulary collection.', textAlign: TextAlign.center)
           ],
         )),
-        Positioned(
-          bottom: 0,
-          left: 0,
-          child: FloatingActionButton.extended(
-            label: const Text("New"),
-            icon: const Icon(Icons.add),
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return const VocNewPage();
-              }));
-            }
-          )
+      ),
+      Positioned(
+        bottom: 20,
+        right: 20,
+        child: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const VocNewPage();
+            }));
+          }
         )
-      ])
-    );
+      )
+    ]);
   }
 }
 
@@ -122,7 +121,7 @@ class _VocNewPageState extends State<VocNewPage> {
           child: ConstrainedBox(
             constraints: BoxConstraints(minWidth: 100, maxWidth: 450, minHeight: viewport.maxHeight),
             child: Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
               child: Form(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,

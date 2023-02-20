@@ -76,16 +76,12 @@ const List<Color> colors = [
 class _SettingsPageState extends State<SettingsPage>{
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: _build);
-  }
-  
-  Widget _build(BuildContext context, BoxConstraints viewport) {
     return SingleChildScrollView(
       child: Center(
         child: ConstrainedBox(
-          constraints: BoxConstraints(minWidth: 100, maxWidth: 450, minHeight: viewport.maxHeight),
+          constraints: const BoxConstraints(minWidth: 100, maxWidth: 450),
           child: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
