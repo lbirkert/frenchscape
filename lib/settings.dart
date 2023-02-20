@@ -36,7 +36,7 @@ class Setting {
 
   static Color get colorSchemeSeed {
     return Color(int.parse(
-      settingBox.get(2)?.value ?? Colors.purple.value.toString()
+      settingBox.get(2)?.value ?? Colors.deepPurple.value.toString()
     ));
   }
 
