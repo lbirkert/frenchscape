@@ -33,21 +33,22 @@ class ObjectBox {
 late ValueNotifier<ThemeMode> themeNotifier;
 late ValueNotifier<Color> colorSchemeSeedNotifier;
 
+const textTheme = TextTheme(
+  headlineLarge: TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
+  headlineMedium: TextStyle(fontSize: 25, fontWeight: FontWeight.w800),
+);
+
 final theme = ThemeData(
   useMaterial3: true,
   fontFamily: 'Inter',
-  textTheme: const TextTheme(
-    headlineLarge: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)
-  )
+  textTheme: textTheme
 );
 
 final darkTheme = ThemeData(
   brightness: Brightness.dark,
   useMaterial3: true,
   fontFamily: 'Inter',
-  textTheme: const TextTheme(
-    headlineLarge: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)
-  )
+  textTheme: textTheme
 );
 
 Future<void> main() async {

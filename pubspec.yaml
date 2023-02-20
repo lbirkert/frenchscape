@@ -1,5 +1,5 @@
 name: frenchscape
-description: A new Flutter project.
+description: An opensource vocabulary trainer
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -30,7 +30,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
 
   flutter_colorpicker: ^1.0.3
   objectbox: ^1.7.2
@@ -98,3 +97,10 @@ flutter:
       fonts:
         - asset: fonts/Inter-Regular.ttf
         - asset: fonts/Inter-Bold.ttf
+        - asset: fonts/Inter-Black.ttf
+        - asset: fonts/Inter-ExtraBold.ttf
+        - asset: fonts/Inter-ExtraLight.ttf
+        - asset: fonts/Inter-Light.ttf
+        - asset: fonts/Inter-Medium.ttf
+        - asset: fonts/Inter-SemiBold.ttf
+        - asset: fonts/Inter-Thin.ttf

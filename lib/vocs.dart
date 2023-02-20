@@ -72,13 +72,14 @@ class _VocPageState extends State<VocPage> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+      padding: const EdgeInsets.all(20),
       child: Stack(children: [
         Center(child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text('Vocabulary', style: Theme.of(context).textTheme.headlineLarge!),
-            const Text('Tap the New Button to create a new Vocabulary Set.')
+            const SizedBox(height: 10),
+            const Text('Tap the New Button to create a new Vocabulary collection.', textAlign: TextAlign.center)
           ],
         )),
         Positioned(
@@ -121,13 +122,14 @@ class _VocNewPageState extends State<VocNewPage> {
           child: ConstrainedBox(
             constraints: BoxConstraints(minWidth: 100, maxWidth: 450, minHeight: viewport.maxHeight),
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+              padding: const EdgeInsets.all(20),
               child: Form(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("New Vocabulary Set", style: Theme.of(context).textTheme.headlineLarge!),
+                    const SizedBox(height: 10),
                     const Text("Create a new Vocabulary Set"),
                     const SizedBox(height: 40),
                     Stack(

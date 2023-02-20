@@ -81,15 +81,19 @@ class _SettingsPageState extends State<SettingsPage>{
         child: ConstrainedBox(
           constraints: const BoxConstraints(minWidth: 100, maxWidth: 450),
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+            padding: const EdgeInsets.all(20),
             child: Column(
               children: [
                 Text("Settings", style: Theme.of(context).textTheme.headlineLarge),
                 const SizedBox(height: 10),
                 const Text("Configure this application"),
                 const SizedBox(height: 30),
-                Text("Appearance", style: Theme.of(context).textTheme.titleLarge),
+                
+                Text("Appearance", style: Theme.of(context).textTheme.headlineMedium),
                 const SizedBox(height: 10),
+                const Text("Options that control how this app looks"),
+                const SizedBox(height: 20),
+                
                 DropdownButton(
                   value: Setting.appearance,
                   items: [
