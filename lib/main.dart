@@ -38,19 +38,6 @@ const textTheme = TextTheme(
   headlineMedium: TextStyle(fontSize: 25, fontWeight: FontWeight.w800),
 );
 
-final theme = ThemeData(
-  useMaterial3: true,
-  fontFamily: 'Inter',
-  textTheme: textTheme
-);
-
-final darkTheme = ThemeData(
-  brightness: Brightness.dark,
-  useMaterial3: true,
-  fontFamily: 'Inter',
-  textTheme: textTheme
-);
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -75,11 +62,18 @@ class FrenchscapeApp extends StatelessWidget {
           builder: (_, ThemeMode currentMode, __) =>
             MaterialApp(
               debugShowCheckedModeBanner: false,
-              theme: theme.copyWith(
-                colorScheme: ColorScheme.fromSeed(seedColor: seed)
+              theme: ThemeData(
+                useMaterial3: true,
+                fontFamily: 'Inter',
+                textTheme: textTheme,
+                colorSchemeSeed: seed
               ),
-              darkTheme: darkTheme.copyWith(
-                colorScheme: ColorScheme.fromSeed(seedColor: seed, brightness: Brightness.dark)
+              darkTheme: ThemeData(
+                brightness: Brightness.dark,
+                useMaterial3: true,
+                fontFamily: 'Inter',
+                textTheme: textTheme,
+                colorSchemeSeed: seed
               ),
               themeMode: currentMode,
               home: const Frenchscape()
