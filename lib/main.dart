@@ -128,11 +128,11 @@ class _FrenchscapeState extends State<Frenchscape> {
           ),
         ],
       ),
-      body: SafeArea(child: [
+      body: [
         const VocOverviewPage(),
         const SettingsPage(),
         const InsightsPage()
-      ][currentPageIndex])
+      ][currentPageIndex]
     );
   }
 }

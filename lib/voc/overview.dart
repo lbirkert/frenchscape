@@ -27,10 +27,10 @@ class _VocOverviewPageState extends State<VocOverviewPage> {
                     child: LayoutBuilder(builder: title)
                 )
             ),
-            body: ValueListenableBuilder(
+            body: SafeArea(child: ValueListenableBuilder(
                 valueListenable: vocCollectionsNotifier,
                 builder: list
-            ),
+            )),
             floatingActionButton: FloatingActionButton.extended(
                 icon: const Icon(Icons.add),
                 label: const Text("New"),
@@ -57,11 +57,15 @@ class _VocOverviewPageState extends State<VocOverviewPage> {
                         Flexible(
                             child: ConstrainedBox(
                                 constraints: const BoxConstraints(maxWidth: 300),
-                                child: const TextField(
+                                child: TextField(
+                                    controller: searchController,
                                     decoration: InputDecoration(
                                         hintText: "Search",
                                         border: InputBorder.none,
-                                        suffixIcon: Icon(Icons.search),
+                                        suffixIcon: IconButton(
+                                            icon: const Icon(Icons.search),
+                                            onPressed: (){}
+                                        ),
                                     ),
                                 )
                             )
