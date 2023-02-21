@@ -36,6 +36,7 @@ dependencies:
   path: ^1.8.2
   path_provider: ^2.0.12
   objectbox_flutter_libs: ^1.7.2
+  url_launcher: ^6.1.9
 
 dev_dependencies:
   flutter_test:

@@ -89,9 +89,7 @@ class _VocPageState extends State<VocPage> {
         child: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const VocNewPage();
-            }));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const VocNewPage()));
           }
         )
       )

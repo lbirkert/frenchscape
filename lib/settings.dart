@@ -3,6 +3,7 @@ import "main.dart";
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import "package:flutter/material.dart";
 import "package:objectbox/objectbox.dart";
+import 'package:url_launcher/url_launcher.dart';
 
 @Entity()
 class Setting {
@@ -144,6 +145,31 @@ class _SettingsPageState extends State<SettingsPage>{
                     Setting.colorSchemeSeed = c; 
                   },
                 ),
+                const SizedBox(height: 30),
+                
+                Text("About", style: Theme.of(context).textTheme.headlineMedium),
+                const SizedBox(height: 10),
+                const Text("Learn more about this project"),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FilledButton(
+                      child: const Text("Github"),
+                      onPressed: () async {
+                        final uri = Uri.parse("https://github.com/KekOnTheWorld/frenchscape");
+                        if (await canLaunchUrl(uri)) {
+                          await launchUrl(uri);
+                        }
+                      }
+                    ),
+                    const SizedBox(width: 10),
+                    OutlinedButton(
+                      child: const Text("Licenses"),
+                      onPressed: () => showLicensePage(context: context)
+                    )
+                  ]
+                )
               ]
             )
           )
