@@ -145,7 +145,6 @@ class _SettingsPageState extends State<SettingsPage>{
                     Setting.colorSchemeSeed = c; 
                   },
                 ),
-                const SizedBox(height: 30),
                 
                 Text("About", style: Theme.of(context).textTheme.headlineMedium),
                 const SizedBox(height: 10),

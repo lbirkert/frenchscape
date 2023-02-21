@@ -36,6 +36,8 @@ late ValueNotifier<Color> colorSchemeSeedNotifier;
 const textTheme = TextTheme(
   headlineLarge: TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
   headlineMedium: TextStyle(fontSize: 25, fontWeight: FontWeight.w800),
+  headlineSmall: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+  titleLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
 );
 
 Future<void> main() async {
