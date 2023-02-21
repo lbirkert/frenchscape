@@ -24,7 +24,7 @@ class _VocOverviewPageState extends State<VocOverviewPage> {
             appBar: AppBar(
                 title: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5),
-                    child: title(context)
+                    child: LayoutBuilder(builder: title)
                 )
             ),
             body: ValueListenableBuilder(
@@ -43,42 +43,48 @@ class _VocOverviewPageState extends State<VocOverviewPage> {
         );
     }
 
-    Widget title(BuildContext context) => Row(
+    Widget title(BuildContext context, BoxConstraints constraints) => Row(
         children: [
-            const Text("Vocabulary"),
-            const SizedBox(width: 30),
+            ...(constraints.maxWidth > 400 ? [
+                const Text("Vocabulary"),
+                const SizedBox(width: 30)
+            ] : []),
 
-            Expanded(child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                    ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 300),
-                        child: const TextField(
-                            decoration: InputDecoration(
-                                hintText: "Search",
-                                border: InputBorder.none,
-                                suffixIcon: Icon(Icons.search),
-                            ),
+            Expanded(
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                        Flexible(
+                            child: ConstrainedBox(
+                                constraints: const BoxConstraints(maxWidth: 300),
+                                child: const TextField(
+                                    decoration: InputDecoration(
+                                        hintText: "Search",
+                                        border: InputBorder.none,
+                                        suffixIcon: Icon(Icons.search),
+                                    ),
+                                )
+                            )
                         ),
-                    ),
-                    const SizedBox(width: 20),
-                    ValueListenableBuilder(
-                        valueListenable: vocCollectionsNotifier,
-                        builder: (_, List<VocCollection> collections, __) => Checkbox(
-                            value: collections.length == selected.length,
-                            onChanged: (v) {
-                                setState(() {
-                                    if(v!) {
-                                        selected = Iterable<int>.generate(collections.length).toList();
-                                    } else {
-                                        selected.clear();
-                                    }
-                                });
-                            }
+                        const SizedBox(width: 20),
+                        ValueListenableBuilder(
+                            valueListenable: vocCollectionsNotifier,
+                            builder: (_, List<VocCollection> collections, __) => Checkbox(
+                                value: collections.length == selected.length,
+                                onChanged: (v) {
+                                    setState(() {
+                                        if(v!) {
+                                            selected = Iterable<int>.generate(collections.length).toList();
+                                        } else {
+                                            selected.clear();
+                                        }
+                                    });
+                                }
+                            )
                         )
-                    )
-                ]
-            ))
+                    ]
+                )
+            )
         ]
     );
 
