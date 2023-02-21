@@ -74,15 +74,11 @@ class _VocCollectionNewPageState extends State<VocCollectionNewPage> {
     Widget create(BuildContext context) => FilledButton(
         child: const Text("Create"),
         onPressed: () {
-            final name = nameController.text.isEmpty ? "Untitled" : nameController.text;
-            final description = descriptionController.text.isEmpty ? "No description provided" : descriptionController.text;
-            final author = authorController.text.isEmpty ? "Unknown Author" : authorController.text;
-            
             vocColBox.put(VocCollection(
                 lang: selectedLang,
-                name: name,
-                description: description,
-                author: author,
+                name: nameController.text,
+                description: descriptionController.text,
+                author: authorController.text,
             ));
             
             Navigator.pop(context);

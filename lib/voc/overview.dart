@@ -95,8 +95,8 @@ class _VocOverviewPageState extends State<VocOverviewPage> {
     );
 
     Widget _listItem(BuildContext context, VocCollection collection, int i) => ListTile(
-        title: Text(collection.name),
-        subtitle: Text(collection.description),
+        title: Text(collection.name.isEmpty ? "Untitled" : collection.name),
+        subtitle: Text(collection.description.isEmpty ? "No description provided" : collection.description),
         leading: langs[collection.lang].avatar(context),
         trailing: Checkbox(value: selected.contains(i), onChanged: (v) {
             setState(() => (v! ? selected.add : selected.remove)(i));
