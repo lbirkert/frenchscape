@@ -1,4 +1,4 @@
-import "package:flutter/material.dart";
+import "package:frenchscape/frenchscape.dart";
 
 class Language {
   const Language(this.flag, this.name);
@@ -7,9 +7,7 @@ class Language {
   final String name;
 
   Widget avatar(BuildContext context) {
-    return CircleAvatar(
-      child: Text(flag)
-    );
+    return CircleAvatar(child: Text(flag));
   }
 
   Widget full(BuildContext context) {

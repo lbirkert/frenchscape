@@ -1,34 +1,4 @@
-import "settings.dart";
-import "insights.dart";
-
-import "collection/collection.dart";
-
-import 'package:flutter/material.dart';
-import "package:objectbox/objectbox.dart";
-import 'package:path/path.dart' as path;
-import 'package:path_provider/path_provider.dart';
-
-import 'objectbox.g.dart';
-
-late ObjectBox objectbox;
-
-late Box<Collection> collectionBox;
-late Box<Setting> settingBox;
-
-class ObjectBox {
-  late final Store store;
-  
-  ObjectBox._create(this.store) {
-    collectionBox = store.box<Collection>();
-    settingBox = store.box<Setting>();
-  }
-
-  static Future<ObjectBox> create() async {
-    final docsDir = await getApplicationDocumentsDirectory();
-    final store = await openStore(directory: path.join(docsDir.path, "store"));
-    return ObjectBox._create(store);
-  }
-}
+import "frenchscape.dart";
 
 const textTheme = TextTheme(
   headlineLarge: TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
@@ -37,16 +7,10 @@ const textTheme = TextTheme(
   titleLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
 );
 
-late ValueNotifier<ThemeMode> themeNotifier;
-late ValueNotifier<Color> colorSchemeSeedNotifier;
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  objectbox = await ObjectBox.create();
-
-  themeNotifier = ValueNotifier(Setting.appearance);
-  colorSchemeSeedNotifier = ValueNotifier(Setting.colorSchemeSeed);
+  await ObjectBox.create();
 
   runApp(const FrenchscapeApp());
 }
@@ -58,29 +22,25 @@ class FrenchscapeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder<Color>(
       valueListenable: colorSchemeSeedNotifier,
-      builder: (_, Color seed, __) =>
-        ValueListenableBuilder<ThemeMode>(
-          valueListenable: themeNotifier,
-          builder: (_, ThemeMode currentMode, __) =>
-            MaterialApp(
-              debugShowCheckedModeBanner: false,
-              theme: ThemeData(
-                useMaterial3: true,
-                fontFamily: 'Inter',
-                textTheme: textTheme,
-                colorSchemeSeed: seed
-              ),
-              darkTheme: ThemeData(
-                brightness: Brightness.dark,
-                useMaterial3: true,
-                fontFamily: 'Inter',
-                textTheme: textTheme,
-                colorSchemeSeed: seed
-              ),
-              themeMode: currentMode,
-              home: const Frenchscape()
-            )
-      )
+      builder: (_, Color seed, __) => ValueListenableBuilder<ThemeMode>(
+        valueListenable: themeNotifier,
+        builder: (_, ThemeMode currentMode, __) => MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+              useMaterial3: true,
+              fontFamily: 'Inter',
+              textTheme: textTheme,
+              colorSchemeSeed: seed),
+          darkTheme: ThemeData(
+              brightness: Brightness.dark,
+              useMaterial3: true,
+              fontFamily: 'Inter',
+              textTheme: textTheme,
+              colorSchemeSeed: seed),
+          themeMode: currentMode,
+          home: const Frenchscape(),
+        ),
+      ),
     );
   }
 }
@@ -127,7 +87,7 @@ class _FrenchscapeState extends State<Frenchscape> {
         const CollectionsPage(),
         const SettingsPage(),
         const InsightsPage()
-      ][currentPageIndex]
+      ][currentPageIndex],
     );
   }
 }
