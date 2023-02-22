@@ -151,13 +151,15 @@ class CollectionsView extends StatelessWidget {
                         builder: (context, constraints) => Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                                if(constraints.maxWidth > 350)
+                                if(constraints.maxWidth > 400)
                                     const Text("Vocabulary"),
-                                if(constraints.maxWidth > 350)
+                                if(constraints.maxWidth > 400)
                                     const SizedBox(width: 20),
 
                                 Flexible(child: ConstrainedBox(
-                                    constraints: const BoxConstraints(maxWidth: 350),
+                                    constraints: BoxConstraints(
+                                        maxWidth: constraints.maxWidth < 400 ? 400 : 300
+                                    ),
                                     child: Searchbar()
                                 ))
                             ]
