@@ -157,9 +157,7 @@ class _SettingsPageState extends State<SettingsPage>{
                       child: const Text("Github"),
                       onPressed: () async {
                         final uri = Uri.parse("https://github.com/KekOnTheWorld/frenchscape");
-                        if (await canLaunchUrl(uri)) {
-                          await launchUrl(uri);
-                        }
+                        await launchUrl(uri);
                       }
                     ),
                     const SizedBox(width: 10),
