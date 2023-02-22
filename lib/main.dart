@@ -1,7 +1,7 @@
-import "voc/overview.dart";
-import "voc/collection.dart";
 import "settings.dart";
 import "insights.dart";
+
+import "collection/collection.dart";
 
 import 'package:flutter/material.dart';
 import "package:objectbox/objectbox.dart";
@@ -11,14 +11,15 @@ import 'package:path_provider/path_provider.dart';
 import 'objectbox.g.dart';
 
 late ObjectBox objectbox;
-late Box<VocCollection> vocColBox;
+
+late Box<Collection> collectionBox;
 late Box<Setting> settingBox;
 
 class ObjectBox {
   late final Store store;
   
   ObjectBox._create(this.store) {
-    vocColBox = store.box<VocCollection>();
+    collectionBox = store.box<Collection>();
     settingBox = store.box<Setting>();
   }
 
@@ -29,7 +30,6 @@ class ObjectBox {
   }
 }
 
-
 const textTheme = TextTheme(
   headlineLarge: TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
   headlineMedium: TextStyle(fontSize: 25, fontWeight: FontWeight.w800),
@@ -39,8 +39,6 @@ const textTheme = TextTheme(
 
 late ValueNotifier<ThemeMode> themeNotifier;
 late ValueNotifier<Color> colorSchemeSeedNotifier;
-late ValueNotifier<List<VocCollection>> vocCollectionsNotifier;
-
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,9 +47,6 @@ Future<void> main() async {
 
   themeNotifier = ValueNotifier(Setting.appearance);
   colorSchemeSeedNotifier = ValueNotifier(Setting.colorSchemeSeed);
-  
-  vocCollectionsNotifier = ValueNotifier(vocColBox.getAll());
-  vocColBox.query().watch().listen((_) => vocCollectionsNotifier.value = vocColBox.getAll());
 
   runApp(const FrenchscapeApp());
 }
@@ -129,7 +124,7 @@ class _FrenchscapeState extends State<Frenchscape> {
         ],
       ),
       body: [
-        const VocOverviewPage(),
+        const CollectionsPage(),
         const SettingsPage(),
         const InsightsPage()
       ][currentPageIndex]

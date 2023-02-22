@@ -1,8 +1,9 @@
+import "collection.dart";
+import "../language.dart";
+
 import "package:flutter/material.dart";
 
 import "package:frenchscape/main.dart";
-import "package:frenchscape/voc/collection.dart";
-import "package:frenchscape/voc/lang.dart";
 
 class VocCollectionNewPage extends StatefulWidget {
     const VocCollectionNewPage({
@@ -74,7 +75,7 @@ class _VocCollectionNewPageState extends State<VocCollectionNewPage> {
     Widget create(BuildContext context) => FilledButton(
         child: const Text("Create"),
         onPressed: () {
-            vocColBox.put(VocCollection(
+            collectionBox.put(Collection(
                 lang: selectedLang,
                 name: nameController.text,
                 description: descriptionController.text,

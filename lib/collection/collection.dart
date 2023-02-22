@@ -1,9 +1,13 @@
+export "new.dart";
+export "collections.dart";
+
 import "package:flutter/material.dart";
 import "package:objectbox/objectbox.dart";
 
+
 // The entity
 @Entity()
-class VocCollection {
+class Collection {
   @Id() 
   int id;
 
@@ -13,33 +17,32 @@ class VocCollection {
   String description;
   String author;
 
-  VocCollection({
+  Collection({
     this.id = 0,
     required this.lang,
     required this.name,
     required this.description,
     required this.author,
   });
+  
+  get nameD => name.isEmpty ? "Untitled" : name;
+  get descriptionD => description.isEmpty ? "No description provided" : name;
+  get authorD => author.isEmpty ? "Unknown Author" : name;
 }
 
-class VocCollectionPage extends StatefulWidget {
-  const VocCollectionPage({
+class CollectionPage extends StatelessWidget {
+  const CollectionPage({
     super.key,
     required this.collection
   });
 
-  final VocCollection collection;
+  final Collection collection;
 
-  @override
-  State<VocCollectionPage> createState() => _VocCollectionPageState();
-}
-
-class _VocCollectionPageState extends State<VocCollectionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.collection.name)
+        title: Text(collection.name)
       )
     );
   }
