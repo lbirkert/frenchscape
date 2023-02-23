@@ -1,5 +1,9 @@
 import "package:frenchscape/frenchscape.dart";
 
+T random<T>(List<T> e) {
+  return e[Random().nextInt(e.length)];
+}
+
 class ExerciseManager extends ChangeNotifier {
   ExerciseManager({
     required this.collection,
@@ -27,11 +31,14 @@ class ExerciseManager extends ChangeNotifier {
 
   HashSet<Vocabulary> take(int amount, {int changing = 1}) {
     HashSet<Vocabulary> newWords = HashSet.from(
-        vocabularies.where((v) => !last.contains(v)).sample(changing, _random));
-    last = HashSet.from(vocabularies
-        .where((voc) => !newWords.contains(voc))
-        .sample(amount - changing, _random)
-        .followedBy(newWords));
+        (vocabularies.where((v) => !last.contains(v)).toList()
+              ..shuffle(_random))
+            .take(changing));
+    last = HashSet.from(
+        (vocabularies.where((voc) => !newWords.contains(voc)).toList()
+              ..shuffle(_random))
+            .take(amount - changing)
+            .followedBy(newWords));
     return last;
   }
 
@@ -184,7 +191,7 @@ class _TranslateExerciseState extends State<TranslateExercise> {
                     manager.update();
                   } else {
                     setState(() {
-                      errorText = errorTexts.sample(1).first;
+                      errorText = random(errorTexts);
                     });
                   }
                 }
@@ -227,8 +234,7 @@ class SuccessDialog extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(successTexts.sample(1).first,
-                  style: theme.textTheme.headlineLarge)
+          Text(random(successTexts), style: theme.textTheme.headlineLarge)
               .animate()
               .move(
                 delay: 200.ms,
