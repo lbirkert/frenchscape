@@ -5,7 +5,8 @@ class Collection {
   @Id()
   int id;
 
-  int lang;
+  int root;
+  int foreign;
 
   String name;
   String description;
@@ -13,14 +14,15 @@ class Collection {
 
   Collection({
     this.id = 0,
-    required this.lang,
+    required this.root,
+    required this.foreign,
     required this.name,
     required this.description,
     required this.author,
   });
 
-  get nameD => name.isEmpty ? "Untitled" : name;
-  get descriptionD =>
+  String get nameD => name.isEmpty ? "Untitled" : name;
+  String get descriptionD =>
       description.isEmpty ? "No description provided" : description;
-  get authorD => author.isEmpty ? "Unknown Author" : author;
+  String get authorD => author.isEmpty ? "Unknown Author" : author;
 }

@@ -38,7 +38,8 @@ class CollectionPage extends StatelessWidget {
                       name: collection.name,
                       description: collection.description,
                       author: collection.author,
-                      lang: collection.lang,
+                      root: collection.root,
+                      foreign: collection.foreign,
                       builder: (_, details) => [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -47,7 +48,8 @@ class CollectionPage extends StatelessWidget {
                               child: const Text("Save"),
                               onPressed: () {
                                 collection.name = details.name.text;
-                                collection.lang = details.lang.value;
+                                collection.root = details.root.value;
+                                collection.foreign = details.foreign.value;
                                 collection.description =
                                     details.description.text;
                                 collection.author = details.author.text;
@@ -64,7 +66,7 @@ class CollectionPage extends StatelessWidget {
                                   builder: (_) => const ConfirmDialog(
                                     title: "Delete",
                                     description:
-                                        "Are you sure? This action cannot be undone",
+                                        "Are you sure?\n\nThis action cannot be undone!",
                                   ),
                                 );
 

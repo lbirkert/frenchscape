@@ -1,13 +1,8 @@
 import "package:frenchscape/frenchscape.dart";
 
-class CollectionCreatePage extends StatefulWidget {
+class CollectionCreatePage extends StatelessWidget {
   const CollectionCreatePage({super.key});
 
-  @override
-  State<CollectionCreatePage> createState() => _CollectionCreatePageState();
-}
-
-class _CollectionCreatePageState extends State<CollectionCreatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,20 +12,21 @@ class _CollectionCreatePageState extends State<CollectionCreatePage> {
           slivers: [
             SliverFillRemaining(
               hasScrollBody: false,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 40,
-                    ),
-                    child: CollectionDetails(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 40,
+                ),
+                child: Column(
+                  children: [
+                    CollectionDetails(
                       builder: (context, details) => [
                         FilledButton(
                           child: const Text("Create"),
                           onPressed: () {
                             collectionBox.put(Collection(
-                              lang: details.lang.value,
+                              root: details.root.value,
+                              foreign: details.foreign.value,
                               name: details.name.text,
                               description: details.description.text,
                               author: details.author.text,
@@ -41,8 +37,8 @@ class _CollectionCreatePageState extends State<CollectionCreatePage> {
                         ),
                       ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],

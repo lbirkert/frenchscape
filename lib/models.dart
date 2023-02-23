@@ -2,6 +2,7 @@ export "models/collection.dart";
 export "models/vocabulary.dart";
 export "models/setting.dart";
 export "models/language.dart";
+export "objectbox.g.dart";
 
 export "package:objectbox/objectbox.dart";
 
