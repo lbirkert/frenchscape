@@ -42,15 +42,16 @@ class VocabularyCreatePage extends StatelessWidget {
                   children: [
                     TextField(
                       controller: root,
-                      decoration: const InputDecoration(
-                        hintText: "Root",
+                      decoration: InputDecoration(
+                        hintText: "${langs[collection.root].flag} Root",
                       ),
                     ),
                     const SizedBox(height: 20),
                     TextField(
                       controller: foreign,
-                      decoration: const InputDecoration(
-                        hintText: "Foreign (Translation)",
+                      decoration: InputDecoration(
+                        hintText:
+                            "${langs[collection.foreign].flag} Foreign (Translation)",
                       ),
                     ),
                   ],
