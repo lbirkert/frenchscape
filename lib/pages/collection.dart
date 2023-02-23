@@ -44,20 +44,6 @@ class CollectionPage extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            FilledButton(
-                              child: const Text("Save"),
-                              onPressed: () {
-                                collection.name = details.name.text;
-                                collection.root = details.root.value;
-                                collection.foreign = details.foreign.value;
-                                collection.description =
-                                    details.description.text;
-                                collection.author = details.author.text;
-                                collectionBox.put(collection);
-                                navigator.pop(true);
-                              },
-                            ),
-                            const SizedBox(width: 10),
                             TextButton(
                               child: const Text("Delete"),
                               onPressed: () async {
@@ -71,11 +57,30 @@ class CollectionPage extends StatelessWidget {
                                 );
 
                                 if (delete ?? false) {
+                                  vocabularyBox
+                                      .query(Vocabulary_.collection
+                                          .equals(collection.id))
+                                      .build()
+                                      .remove();
                                   collectionBox.remove(collection.id);
                                   navigator.pop(true);
                                 }
                               },
-                            )
+                            ),
+                            const SizedBox(width: 10),
+                            FilledButton(
+                              child: const Text("Save"),
+                              onPressed: () {
+                                collection.name = details.name.text;
+                                collection.root = details.root.value;
+                                collection.foreign = details.foreign.value;
+                                collection.description =
+                                    details.description.text;
+                                collection.author = details.author.text;
+                                collectionBox.put(collection);
+                                navigator.pop(true);
+                              },
+                            ),
                           ],
                         ),
                       ],

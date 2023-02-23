@@ -15,6 +15,19 @@ class VocabularyCreatePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("New Vocabulary")),
+      floatingActionButton: FloatingActionButton.extended(
+        icon: const Icon(Icons.add),
+        label: const Text("Create"),
+        onPressed: () {
+          vocabularyBox.put(Vocabulary(
+            collection: collection.id,
+            root: root.text,
+            foreign: foreign.text,
+          ));
+
+          Navigator.pop(context, true);
+        },
+      ),
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
@@ -39,19 +52,6 @@ class VocabularyCreatePage extends StatelessWidget {
                       decoration: const InputDecoration(
                         hintText: "Foreign (Translation)",
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    FilledButton(
-                      child: const Text("Create"),
-                      onPressed: () {
-                        vocabularyBox.put(Vocabulary(
-                          collection: collection.id,
-                          root: root.text,
-                          foreign: foreign.text,
-                        ));
-
-                        Navigator.pop(context, true);
-                      },
                     ),
                   ],
                 ),

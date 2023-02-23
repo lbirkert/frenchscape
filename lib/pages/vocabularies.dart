@@ -1,12 +1,15 @@
 import "package:frenchscape/frenchscape.dart";
 
 class VocabulariesPage extends StatelessWidget {
-  const VocabulariesPage({
+  VocabulariesPage({
     required this.collection,
     super.key,
-  });
+  }) : query = vocabularyBox
+            .query(Vocabulary_.collection.equals(collection.id))
+            .build();
 
   final Collection collection;
+  late final Query<Vocabulary> query;
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +28,7 @@ class VocabulariesPage extends StatelessWidget {
   }
 
   List<Vocabulary> fetch() {
-    Query<Vocabulary> query = vocabularyBox
-        .query(Vocabulary_.collection.equals(collection.id))
-        .build();
-    List<Vocabulary> results = query.find();
-    query.close();
-
-    return results;
+    return query.find();
   }
 }
 
