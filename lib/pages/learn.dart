@@ -177,6 +177,8 @@ class _TranslateExerciseState extends State<TranslateExercise> {
             hintText: langs[widget.collection.root].full,
             errorText: errorText,
             border: const OutlineInputBorder(),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             suffix: ElevatedButton(
               child: const Text("Next"),
               onPressed: () async {
