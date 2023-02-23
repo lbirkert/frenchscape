@@ -6,12 +6,10 @@ class Language {
   final String flag;
   final String name;
 
+  String get full => "$flag $name";
+
   Widget avatar(BuildContext context) {
     return CircleAvatar(child: Text(flag));
-  }
-
-  Widget full(BuildContext context) {
-    return Text("$flag $name");
   }
 }
 

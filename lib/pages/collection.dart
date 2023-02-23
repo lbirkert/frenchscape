@@ -10,16 +10,21 @@ class CollectionPage extends StatelessWidget {
     final navigator = Navigator.of(context);
     return Scaffold(
       appBar: AppBar(title: Text(collection.nameD)),
+      floatingActionButton: FloatingActionButton.extended(
+        icon: const Icon(Icons.school),
+        label: const Text("Learn"),
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) => LearnPage(collection: collection)));
+        },
+      ),
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
             SliverFillRemaining(
               hasScrollBody: false,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 40,
-                  horizontal: 20,
-                ),
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 80),
                 child: Column(
                   children: [
                     ElevatedButton(

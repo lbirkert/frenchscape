@@ -5,3 +5,4 @@ export "pages/settings.dart";
 export "pages/insights.dart";
 export "pages/vocabularies.dart";
 export "pages/vocabulary_create.dart";
+export "pages/learn.dart";

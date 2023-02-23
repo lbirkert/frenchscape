@@ -39,6 +39,8 @@ dependencies:
   url_launcher: ^6.1.9
   equatable: ^2.0.5
   provider: ^6.0.5
+  collection: ^1.17.0
+  flutter_animate: ^4.1.0
 
 dev_dependencies:
   flutter_test:

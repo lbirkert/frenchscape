@@ -21,8 +21,8 @@ class Collection {
     required this.author,
   });
 
-  String get nameD => name.isEmpty ? "Untitled" : name;
+  String get nameD => name.isEmpty ? "Untitled" : name.trim();
   String get descriptionD =>
-      description.isEmpty ? "No description provided" : description;
-  String get authorD => author.isEmpty ? "Unknown Author" : author;
+      description.isEmpty ? "No description provided" : description.trim();
+  String get authorD => author.isEmpty ? "Unknown Author" : author.trim();
 }

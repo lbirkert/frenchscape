@@ -17,6 +17,6 @@ class Vocabulary {
     required this.root,
   });
 
-  String get foreignD => foreign.isEmpty ? "Empty" : foreign;
-  String get rootD => root.isEmpty ? "Empty" : root;
+  String get foreignD => foreign.isEmpty ? "Empty" : foreign.trim();
+  String get rootD => root.isEmpty ? "Empty" : root.trim();
 }

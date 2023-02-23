@@ -40,7 +40,7 @@ class CollectionDetails extends StatelessWidget {
                     .entries
                     .map<DropdownMenuItem<int>>((entry) =>
                         DropdownMenuItem<int>(
-                            value: entry.key, child: entry.value.full(context)))
+                            value: entry.key, child: Text(entry.value.full)))
                     .toList(),
                 onChanged: (int? value) => root.value = value!,
                 underline: const SizedBox(),
@@ -56,7 +56,7 @@ class CollectionDetails extends StatelessWidget {
                     .entries
                     .map<DropdownMenuItem<int>>((entry) =>
                         DropdownMenuItem<int>(
-                            value: entry.key, child: entry.value.full(context)))
+                            value: entry.key, child: Text(entry.value.full)))
                     .toList(),
                 onChanged: (int? value) => foreign.value = value!,
                 underline: const SizedBox(),
