@@ -1,16 +1,38 @@
 # frenchscape
 
-A new Flutter project.
+> What is this?
 
-## Getting Started
+~~An attempt of mine trying to get myself to learn French vocabulary~~
+Frenchscape is a vocabulary trainer that helps you consistently learning
+vocabulary by providing fun Exercises and collecting a bunch of (Data)[#data],
+to help target specific knowledge gaps.
 
-This project is a starting point for a Flutter application.
+## Data
 
-A few resources to get you started if this is your first Flutter project:
+Frenchscape collects the data locally (on the same device) and does not share it with any
+second/third party unless you otherwise explicitly agreed to.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Data the application collects:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Training data
+
+Consists of the start and end dates of the training, the exercises finished,
+their respective duration and the mistakes that were made.
+
+## Building
+
+- For your current platform:
+
+`flutter build --release`
+`flutter build --debug`
+
+- For android devices:
+
+`flutter build apk --release`
+`flutter build apk --debug`
+
+- For iOS devices:
+
+no clue
+
+
