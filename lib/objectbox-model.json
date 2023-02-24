@@ -24,7 +24,7 @@
     },
     {
       "id": "8:5467191662035450347",
-      "lastPropertyId": "10:2127253963635243794",
+      "lastPropertyId": "12:6729223316050032554",
       "name": "Collection",
       "properties": [
         {
@@ -49,21 +49,27 @@
           "type": 9
         },
         {
-          "id": "9:7501899446471927713",
-          "name": "root",
+          "id": "11:3996144465955504546",
+          "name": "dbRoot",
           "type": 6
         },
         {
-          "id": "10:2127253963635243794",
-          "name": "foreign",
+          "id": "12:6729223316050032554",
+          "name": "dbForeign",
           "type": 6
         }
       ],
-      "relations": []
+      "relations": [
+        {
+          "id": "1:4048765688415840915",
+          "name": "vocabularies",
+          "targetId": "9:7985529865387513564"
+        }
+      ]
     },
     {
       "id": "9:7985529865387513564",
-      "lastPropertyId": "4:5444037046691007609",
+      "lastPropertyId": "6:2483705288307384784",
       "name": "Vocabulary",
       "properties": [
         {
@@ -71,11 +77,6 @@
           "name": "id",
           "type": 6,
           "flags": 1
-        },
-        {
-          "id": "2:4037666135550654488",
-          "name": "collection",
-          "type": 6
         },
         {
           "id": "3:5044207968808576622",
@@ -86,14 +87,92 @@
           "id": "4:5444037046691007609",
           "name": "root",
           "type": 9
+        },
+        {
+          "id": "6:2483705288307384784",
+          "name": "collecitonId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "3:7887140691899884887",
+          "relationTarget": "Collection"
         }
       ],
       "relations": []
+    },
+    {
+      "id": "10:1936803574433623091",
+      "lastPropertyId": "4:8644087250047096417",
+      "name": "Exercise",
+      "properties": [
+        {
+          "id": "1:1638582005272820956",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3000345034347045532",
+          "name": "dbDuration",
+          "type": 6
+        },
+        {
+          "id": "3:6329389747284987503",
+          "name": "trainingId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "1:8643384908064675320",
+          "relationTarget": "Training"
+        },
+        {
+          "id": "4:8644087250047096417",
+          "name": "dbMistakes",
+          "type": 23
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "11:5644693733446298194",
+      "lastPropertyId": "5:653343561953651117",
+      "name": "Training",
+      "properties": [
+        {
+          "id": "1:2615729592049175899",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1609341913543495994",
+          "name": "start",
+          "type": 10
+        },
+        {
+          "id": "3:7850489900918571475",
+          "name": "end",
+          "type": 10
+        },
+        {
+          "id": "5:653343561953651117",
+          "name": "collectionId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "2:3619246265987774305",
+          "relationTarget": "Collection"
+        }
+      ],
+      "relations": [
+        {
+          "id": "2:8163581767454929772",
+          "name": "exercises",
+          "targetId": "10:1936803574433623091"
+        }
+      ]
     }
   ],
-  "lastEntityId": "9:7985529865387513564",
-  "lastIndexId": "0:0",
-  "lastRelationId": "0:0",
+  "lastEntityId": "11:5644693733446298194",
+  "lastIndexId": "3:7887140691899884887",
+  "lastRelationId": "2:8163581767454929772",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
@@ -136,7 +215,12 @@
     573323551591386953,
     3903664509343959037,
     4963647334744927339,
-    4682645164875554883
+    4682645164875554883,
+    7501899446471927713,
+    2127253963635243794,
+    4037666135550654488,
+    357580567944331244,
+    4898692359257330730
   ],
   "retiredRelationUids": [],
   "version": 1

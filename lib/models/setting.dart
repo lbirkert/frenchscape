@@ -12,6 +12,7 @@ class Setting {
     required this.value,
   });
 
+  @Transient()
   static ThemeMode get appearance {
     return {
           "dark": ThemeMode.dark,
@@ -20,6 +21,7 @@ class Setting {
         ThemeMode.system;
   }
 
+  @Transient()
   static set appearance(ThemeMode mode) {
     String value =
         {ThemeMode.dark: "dark", ThemeMode.light: "light"}[mode] ?? "system";
@@ -29,11 +31,13 @@ class Setting {
     settingBox.put(Setting(id: 1, value: value));
   }
 
+  @Transient()
   static Color get colorSchemeSeed {
     return Color(int.parse(
         settingBox.get(2)?.value ?? Colors.deepPurple.value.toString()));
   }
 
+  @Transient()
   static set colorSchemeSeed(Color seed) {
     colorSchemeSeedNotifier.value = seed;
 
