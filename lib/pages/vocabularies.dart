@@ -100,12 +100,10 @@ class VocabulariesView extends StatelessWidget {
         child: const Icon(Icons.delete),
       ),
       confirmDismiss: (_) async {
-        return await showDialog<bool?>(
-          builder: (_) => const ConfirmDialog(
-            title: "Delete",
-            description: "Are you sure?\n\nThis action cannot be undone!",
-          ),
+        return await ConfirmDialog.ask(
           context: context,
+          title: "Delete",
+          description: "Are you sure?\n\nThis action cannot be undone!",
         );
       },
       onDismissed: (_) {

@@ -14,8 +14,14 @@ class CollectionPage extends StatelessWidget {
         icon: const Icon(Icons.school),
         label: const Text("Learn"),
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (_) => LearnPage(collection: collection)));
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => LearnPage(
+                create: (context) =>
+                    ExerciseManager(context: context, collection: collection),
+              ),
+            ),
+          );
         },
       ),
       body: SafeArea(
@@ -52,16 +58,12 @@ class CollectionPage extends StatelessWidget {
                             TextButton(
                               child: const Text("Delete"),
                               onPressed: () async {
-                                final delete = await showDialog<bool>(
+                                if (await ConfirmDialog.ask(
                                   context: context,
-                                  builder: (_) => const ConfirmDialog(
-                                    title: "Delete",
-                                    description:
-                                        "Are you sure?\n\nThis action cannot be undone!",
-                                  ),
-                                );
-
-                                if (delete ?? false) {
+                                  title: "Delete",
+                                  description:
+                                      "Are you sure?\n\nThis action cannot be undone!",
+                                )) {
                                   vocabularyBox
                                       .query(Vocabulary_.collection
                                           .equals(collection.id))

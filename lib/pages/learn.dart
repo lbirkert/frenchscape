@@ -7,18 +7,15 @@ T random<T>(List<T> e, [Random? random]) {
 class LearnPage extends StatelessWidget {
   const LearnPage({
     super.key,
-    required this.collection,
+    required this.create,
   });
 
-  final Collection collection;
+  final ExerciseManager Function(BuildContext context) create;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => ExerciseManager(
-        context: context,
-        collection: collection,
-      ),
+      create: create,
       child: const LearnView(),
     );
   }
@@ -36,16 +33,12 @@ class LearnView extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.stop_circle),
           onPressed: () async {
-            final stop = await showDialog<bool?>(
+            if (await ConfirmDialog.ask(
               context: context,
-              builder: (_) => const ConfirmDialog(
-                title: "Stop training",
-                description: "Do you really want to stop this training?",
-                confirm: "Stop",
-              ),
-            );
-
-            if (stop ?? false) {
+              title: "Stop training",
+              description: "Do you really want to stop this training?",
+              confirm: "Stop",
+            )) {
               manager.stopTraining();
             }
           },

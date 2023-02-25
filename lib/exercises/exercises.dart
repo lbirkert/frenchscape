@@ -63,6 +63,7 @@ class ExerciseManager extends ChangeNotifier {
   }
 
   void startTraining() {
+    training.collection.target = collection;
     training.start = DateTime.now();
   }
 

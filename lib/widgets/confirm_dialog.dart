@@ -5,8 +5,8 @@ class ConfirmDialog extends StatelessWidget {
     super.key,
     required this.title,
     required this.description,
-    this.confirm = "Confirm",
-    this.cancel = "Cancel",
+    required this.confirm,
+    required this.cancel,
   });
 
   final String title;
@@ -31,5 +31,24 @@ class ConfirmDialog extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  static Future<bool> ask({
+    required BuildContext context,
+    required String title,
+    required String description,
+    String confirm = "Confirm",
+    String cancel = "Cancel",
+  }) async {
+    return await showDialog<bool?>(
+          context: context,
+          builder: (_) => ConfirmDialog(
+            title: title,
+            description: description,
+            confirm: confirm,
+            cancel: cancel,
+          ),
+        ) ??
+        false;
   }
 }
