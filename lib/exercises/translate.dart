@@ -5,16 +5,20 @@ class TranslateExercise extends StatefulWidget {
     super.key,
     required this.collection,
     required this.vocabulary,
+    required this.task,
   });
 
   final Collection collection;
   final Vocabulary vocabulary;
+  final Task task;
 
   @override
   State<TranslateExercise> createState() => _TranslateExerciseState();
 
   static ExerciseComponent create(
-      Collection collection, VocabularySelector selector) {
+    Collection collection,
+    VocabularySelector selector,
+  ) {
     Vocabulary vocabulary = selector.take();
 
     Task task = Task(answers: []);
@@ -29,13 +33,16 @@ class TranslateExercise extends StatefulWidget {
       TranslateExercise(
         collection: collection,
         vocabulary: vocabulary,
+        task: task,
       ),
     );
   }
 
   // TODO: generify
   bool isCorrect(String answer) {
-    return vocabulary.rootD.toLowerCase() == answer.toLowerCase().trim();
+    task.answers.add(answer);
+
+    return vocabulary.rootD.toLowerCase().trim() == answer.toLowerCase().trim();
   }
 }
 
@@ -98,7 +105,7 @@ class _TranslateExerciseState extends State<TranslateExercise> {
             suffix: ElevatedButton(
               child: const Text("Next"),
               onPressed: () async {
-                if (errorText == null) {
+                if (errorText == null && answer.text.isNotEmpty) {
                   if (widget.isCorrect(answer.text)) {
                     manager.stopExercise();
                     await showDialog(

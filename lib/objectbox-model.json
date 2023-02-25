@@ -139,7 +139,7 @@
     },
     {
       "id": "11:5644693733446298194",
-      "lastPropertyId": "5:653343561953651117",
+      "lastPropertyId": "6:349947039500944043",
       "name": "Training",
       "properties": [
         {
@@ -165,6 +165,11 @@
           "flags": 520,
           "indexId": "2:3619246265987774305",
           "relationTarget": "Collection"
+        },
+        {
+          "id": "6:349947039500944043",
+          "name": "finished",
+          "type": 1
         }
       ],
       "relations": [

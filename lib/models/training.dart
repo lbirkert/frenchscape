@@ -11,6 +11,8 @@ class Training {
   @Property(type: PropertyType.date)
   late DateTime end;
 
+  late bool finished = false;
+
   final collection = ToOne<Collection>();
   final exercises = ToMany<Exercise>();
 
@@ -18,6 +20,7 @@ class Training {
     this.id = 0,
     required this.start,
     required this.end,
+    required this.finished,
   });
 
   Training.late({this.id = 0});

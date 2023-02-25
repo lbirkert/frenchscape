@@ -42,6 +42,9 @@ class ExerciseManager extends ChangeNotifier {
   void update() {
     if (selector.vocabularies.isEmpty) {
       // TODO: start next round
+
+      training.finished = true;
+
       stopTraining();
     }
 
