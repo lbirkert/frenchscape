@@ -4,7 +4,7 @@
 
 ~~An attempt of mine trying to get myself to learn French vocabulary~~
 Frenchscape is a vocabulary trainer that helps you consistently learning
-vocabulary by providing fun Exercises and collecting a bunch of (Data)[#data],
+vocabulary by providing fun Exercises and collecting a bunch of [Data](#data),
 to help target specific knowledge gaps.
 
 ## Data
