@@ -31,6 +31,15 @@ class Collection {
     required this.author,
   });
 
+  Collection.full({
+    this.id = 0,
+    required this.name,
+    required this.description,
+    required this.author,
+    required this.root,
+    required this.foreign,
+  });
+
   @Transient()
   String get nameD => name.isEmpty ? "Untitled" : name.trim();
   @Transient()

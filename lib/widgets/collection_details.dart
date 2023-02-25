@@ -7,19 +7,19 @@ class CollectionDetails extends StatelessWidget {
     String? name,
     String? description,
     String? author,
-    int? root,
-    int? foreign,
+    Language? root,
+    Language? foreign,
   })  : name = TextEditingController(text: name),
         description = TextEditingController(text: description),
         author = TextEditingController(text: author),
-        root = ValueNotifier(root ?? 0),
-        foreign = ValueNotifier(foreign ?? 0);
+        root = ValueNotifier(root ?? langs[0]!),
+        foreign = ValueNotifier(foreign ?? langs[0]!);
 
   final TextEditingController name;
   final TextEditingController description;
   final TextEditingController author;
-  final ValueNotifier<int> foreign;
-  final ValueNotifier<int> root;
+  final ValueNotifier<Language> foreign;
+  final ValueNotifier<Language> root;
 
   final List<Widget> Function(BuildContext, CollectionDetails) builder;
 
@@ -35,14 +35,12 @@ class CollectionDetails extends StatelessWidget {
               valueListenable: root,
               builder: (context, value, _) => DropdownButton(
                 value: value,
-                items: langs
-                    .asMap()
-                    .entries
-                    .map<DropdownMenuItem<int>>((entry) =>
-                        DropdownMenuItem<int>(
-                            value: entry.key, child: Text(entry.value.full)))
+                items: langs.values
+                    .map<DropdownMenuItem<Language>>((lang) =>
+                        DropdownMenuItem<Language>(
+                            value: lang, child: Text(lang.full)))
                     .toList(),
-                onChanged: (int? value) => root.value = value!,
+                onChanged: (Language? value) => root.value = value!,
                 underline: const SizedBox(),
               ),
             ),
@@ -51,14 +49,12 @@ class CollectionDetails extends StatelessWidget {
               valueListenable: foreign,
               builder: (context, value, _) => DropdownButton(
                 value: value,
-                items: langs
-                    .asMap()
-                    .entries
-                    .map<DropdownMenuItem<int>>((entry) =>
-                        DropdownMenuItem<int>(
-                            value: entry.key, child: Text(entry.value.full)))
+                items: langs.values
+                    .map<DropdownMenuItem<Language>>((lang) =>
+                        DropdownMenuItem<Language>(
+                            value: lang, child: Text(lang.full)))
                     .toList(),
-                onChanged: (int? value) => foreign.value = value!,
+                onChanged: (Language? value) => foreign.value = value!,
                 underline: const SizedBox(),
               ),
             )

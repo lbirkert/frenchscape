@@ -19,11 +19,12 @@ class VocabularyCreatePage extends StatelessWidget {
         icon: const Icon(Icons.add),
         label: const Text("Create"),
         onPressed: () {
-          vocabularyBox.put(Vocabulary(
-            collection: collection.id,
+          collection.vocabularies.add(Vocabulary(
             root: root.text,
             foreign: foreign.text,
           ));
+
+          collection.vocabularies.applyToDb();
 
           Navigator.pop(context, true);
         },
@@ -43,7 +44,7 @@ class VocabularyCreatePage extends StatelessWidget {
                     TextField(
                       controller: root,
                       decoration: InputDecoration(
-                        hintText: "${langs[collection.root].flag} Root",
+                        hintText: "${collection.root.flag} Root",
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -51,7 +52,7 @@ class VocabularyCreatePage extends StatelessWidget {
                       controller: foreign,
                       decoration: InputDecoration(
                         hintText:
-                            "${langs[collection.foreign].flag} Foreign (Translation)",
+                            "${collection.foreign.flag} Foreign (Translation)",
                       ),
                     ),
                   ],

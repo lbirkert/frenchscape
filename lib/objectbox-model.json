@@ -69,7 +69,7 @@
     },
     {
       "id": "9:7985529865387513564",
-      "lastPropertyId": "6:2483705288307384784",
+      "lastPropertyId": "7:7034473579677635194",
       "name": "Vocabulary",
       "properties": [
         {
@@ -89,11 +89,11 @@
           "type": 9
         },
         {
-          "id": "6:2483705288307384784",
-          "name": "collecitonId",
+          "id": "7:7034473579677635194",
+          "name": "collectionId",
           "type": 11,
           "flags": 520,
-          "indexId": "3:7887140691899884887",
+          "indexId": "7:8671912967347110498",
           "relationTarget": "Collection"
         }
       ],
@@ -101,7 +101,7 @@
     },
     {
       "id": "10:1936803574433623091",
-      "lastPropertyId": "4:8644087250047096417",
+      "lastPropertyId": "6:7777526804247725382",
       "name": "Exercise",
       "properties": [
         {
@@ -124,12 +124,18 @@
           "relationTarget": "Training"
         },
         {
-          "id": "4:8644087250047096417",
-          "name": "dbMistakes",
-          "type": 23
+          "id": "6:7777526804247725382",
+          "name": "dbType",
+          "type": 6
         }
       ],
-      "relations": []
+      "relations": [
+        {
+          "id": "3:8531334777863470235",
+          "name": "tasks",
+          "targetId": "12:802731331767518249"
+        }
+      ]
     },
     {
       "id": "11:5644693733446298194",
@@ -168,11 +174,46 @@
           "targetId": "10:1936803574433623091"
         }
       ]
+    },
+    {
+      "id": "12:802731331767518249",
+      "lastPropertyId": "4:2422687727505942705",
+      "name": "Task",
+      "properties": [
+        {
+          "id": "1:1980924692366534824",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7656639119447435220",
+          "name": "answers",
+          "type": 30
+        },
+        {
+          "id": "3:7694888084851752981",
+          "name": "vocabularyId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "5:6928250009684764924",
+          "relationTarget": "Vocabulary"
+        },
+        {
+          "id": "4:2422687727505942705",
+          "name": "exerciseId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "6:3700290409627118678",
+          "relationTarget": "Exercise"
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "11:5644693733446298194",
-  "lastIndexId": "3:7887140691899884887",
-  "lastRelationId": "2:8163581767454929772",
+  "lastEntityId": "12:802731331767518249",
+  "lastIndexId": "7:8671912967347110498",
+  "lastRelationId": "3:8531334777863470235",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
@@ -184,7 +225,10 @@
     5385029078035386039,
     2395076309542070118
   ],
-  "retiredIndexUids": [],
+  "retiredIndexUids": [
+    1416497970705833650,
+    7887140691899884887
+  ],
   "retiredPropertyUids": [
     3852964094086775502,
     7094510029543666346,
@@ -220,7 +264,10 @@
     2127253963635243794,
     4037666135550654488,
     357580567944331244,
-    4898692359257330730
+    4898692359257330730,
+    8644087250047096417,
+    5957778014414756566,
+    2483705288307384784
   ],
   "retiredRelationUids": [],
   "version": 1

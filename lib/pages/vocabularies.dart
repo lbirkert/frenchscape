@@ -1,21 +1,21 @@
 import "package:frenchscape/frenchscape.dart";
 
 class VocabulariesPage extends StatelessWidget {
-  VocabulariesPage({
+  const VocabulariesPage({
     required this.collection,
     super.key,
-  }) : query = vocabularyBox
-            .query(Vocabulary_.collection.equals(collection.id))
-            .build();
+  });
 
   final Collection collection;
-  late final Query<Vocabulary> query;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => SearchPool<Vocabulary, int>(
-          identify: (c) => c.id, matches: matches, fetch: fetch),
+        identify: (c) => c.id,
+        matches: matches,
+        fetch: () => collection.vocabularies,
+      ),
       child: VocabulariesView(collection: collection),
     );
   }
@@ -25,10 +25,6 @@ class VocabulariesPage extends StatelessWidget {
 
     return entry.value.foreignD.toLowerCase().contains(query) ||
         entry.value.rootD.toLowerCase().contains(query);
-  }
-
-  List<Vocabulary> fetch() {
-    return query.find();
   }
 }
 
@@ -113,13 +109,15 @@ class VocabulariesView extends StatelessWidget {
         );
       },
       onDismissed: (_) {
+        collection.vocabularies.remove(vocabulary);
+        collection.vocabularies.applyToDb();
         vocabularyBox.remove(vocabulary.id);
         searchPool.update();
       },
       child: ListTile(
         title: Text(vocabulary.rootD),
         subtitle: Text(vocabulary.foreignD),
-        leading: langs[collection.root].avatar(context),
+        leading: collection.root.avatar(context),
       ),
     );
   }

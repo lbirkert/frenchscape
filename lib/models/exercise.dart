@@ -1,14 +1,6 @@
 import "package:frenchscape/frenchscape.dart";
 
-import "dart:typed_data";
-
-enum Mistake {
-  skip,
-  wrong,
-  accent,
-  article,
-  ending,
-}
+enum ExerciseType { translate }
 
 @Entity()
 class Exercise {
@@ -27,17 +19,13 @@ class Exercise {
   }
 
   @Transient()
-  late List<Mistake> mistakes;
+  late ExerciseType type;
 
-  Uint8List get dbMistakes {
-    return Uint8List.fromList(mistakes.map((m) => m.index).toList());
-  }
-
-  set dbMistakes(Uint8List value) {
-    mistakes = value.map((m) => Mistake.values[m]).toList();
-  }
+  int get dbType => type.index;
+  set dbType(int value) => type = ExerciseType.values[value];
 
   final training = ToOne<Training>();
+  final tasks = ToMany<Task>();
 
   Exercise({
     this.id = 0,

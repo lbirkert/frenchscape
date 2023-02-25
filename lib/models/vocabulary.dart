@@ -5,7 +5,7 @@ class Vocabulary {
   @Id()
   int id;
 
-  final colleciton = ToOne<Collection>();
+  final collection = ToOne<Collection>();
 
   String foreign;
   String root;

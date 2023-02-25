@@ -24,7 +24,7 @@ class CollectionCreatePage extends StatelessWidget {
                         FilledButton(
                           child: const Text("Create"),
                           onPressed: () {
-                            collectionBox.put(Collection(
+                            collectionBox.put(Collection.full(
                               root: details.root.value,
                               foreign: details.foreign.value,
                               name: details.name.text,

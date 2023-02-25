@@ -87,7 +87,7 @@ class CollectionsView extends StatelessWidget {
     return ListTile(
       title: Text(collection.nameD),
       subtitle: Text(collection.descriptionD),
-      leading: langs[collection.root].avatar(context),
+      leading: collection.root.avatar(context),
       trailing: ChangeNotifierProvider.value(
         value: entry.selectionPool,
         child: Consumer<SelectionPool<int>>(

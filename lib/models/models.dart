@@ -1,26 +1,28 @@
-export "models/collection.dart";
-export "models/vocabulary.dart";
-export "models/setting.dart";
-export "models/language.dart";
-export "objectbox.g.dart";
+import "package:frenchscape/frenchscape.dart";
+
+export "collection.dart";
+export "vocabulary.dart";
+export "setting.dart";
+export "language.dart";
+export "training.dart";
+export "exercise.dart";
+export "task.dart";
 
 export "package:objectbox/objectbox.dart";
 
-import "models/collection.dart";
-import "models/vocabulary.dart";
-import "models/setting.dart";
-
-import "objectbox.g.dart";
-
-import "package:flutter/material.dart";
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 
 late ObjectBox objectbox;
 
-late Box<Collection> collectionBox;
 late Box<Setting> settingBox;
+
+late Box<Collection> collectionBox;
 late Box<Vocabulary> vocabularyBox;
+
+late Box<Training> trainingBox;
+late Box<Exercise> exerciseBox;
+late Box<Task> taskBox;
 
 late ValueNotifier<ThemeMode> themeNotifier;
 late ValueNotifier<Color> colorSchemeSeedNotifier;
@@ -31,9 +33,14 @@ class ObjectBox {
   ObjectBox._create(this.store) {
     objectbox = this;
 
-    vocabularyBox = store.box<Vocabulary>();
-    collectionBox = store.box<Collection>();
     settingBox = store.box<Setting>();
+
+    collectionBox = store.box<Collection>();
+    vocabularyBox = store.box<Vocabulary>();
+
+    trainingBox = store.box<Training>();
+    exerciseBox = store.box<Exercise>();
+    taskBox = store.box<Task>();
 
     themeNotifier = ValueNotifier(Setting.appearance);
     colorSchemeSeedNotifier = ValueNotifier(Setting.colorSchemeSeed);

@@ -6,10 +6,10 @@ class Training {
   int id;
 
   @Property(type: PropertyType.date)
-  DateTime start;
+  late DateTime start;
 
   @Property(type: PropertyType.date)
-  DateTime end;
+  late DateTime end;
 
   final collection = ToOne<Collection>();
   final exercises = ToMany<Exercise>();
@@ -19,4 +19,6 @@ class Training {
     required this.start,
     required this.end,
   });
+
+  Training.late({this.id = 0});
 }

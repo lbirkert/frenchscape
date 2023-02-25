@@ -16,8 +16,8 @@ class Language {
 }
 
 final langs = HashMap.fromEntries([
-  const MapEntry(1, Language(1, "\u{1F1E9}\u{1F1EA}", "German")),
-  const MapEntry(2, Language(2, "\u{1F1FA}\u{1F1F8}", "English")),
-  const MapEntry(3, Language(3, "\u{1F1EB}\u{1F1F7}", "French")),
-  const MapEntry(4, Language(4, "\u{1F1EA}\u{1F1F8}", "Spanish")),
+  const MapEntry(0, Language(0, "\u{1F1E9}\u{1F1EA}", "German")),
+  const MapEntry(1, Language(1, "\u{1F1FA}\u{1F1F8}", "English")),
+  const MapEntry(2, Language(2, "\u{1F1EB}\u{1F1F7}", "French")),
+  const MapEntry(3, Language(3, "\u{1F1EA}\u{1F1F8}", "Spanish")),
 ]);
