@@ -14,14 +14,16 @@ class CollectionPage extends StatelessWidget {
         icon: const Icon(Icons.school),
         label: const Text("Learn"),
         onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => LearnPage(
-                create: (context) =>
-                    ExerciseManager(context: context, collection: collection),
+          if (collection.vocabularies.isNotEmpty) {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => LearnPage(
+                  create: (context) =>
+                      ExerciseManager(context: context, collection: collection),
+                ),
               ),
-            ),
-          );
+            );
+          }
         },
       ),
       body: SafeArea(
