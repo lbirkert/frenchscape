@@ -68,9 +68,11 @@ class ExerciseManager extends ChangeNotifier {
   }
 
   void stopTraining() {
-    training.end = DateTime.now();
+    if (training.exercises.isNotEmpty) {
+      training.end = DateTime.now();
 
-    trainingBox.put(training);
+      trainingBox.put(training);
+    }
 
     Navigator.of(context).pop(training);
   }
