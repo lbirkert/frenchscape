@@ -50,7 +50,7 @@ class _InsightsPageState extends State<InsightsPage> {
     final List<Exercise> exercises = training.exercises;
     final List<Task> tasks = exercises.expand((e) => e.tasks).toList();
     final List<Vocabulary> failed = tasks
-        .where((t) => t.answers.length > 1 && t.vocabulary.target != null)
+        .where((t) => t.answers.length != 1 && t.vocabulary.target != null)
         .map((t) => t.vocabulary.target!)
         .toList();
 

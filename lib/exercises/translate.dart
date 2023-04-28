@@ -64,6 +64,8 @@ class _TranslateExerciseState extends State<TranslateExercise> {
 
   final answer = TextEditingController();
 
+  bool showSolution = false;
+
   @override
   Widget build(BuildContext context) {
     final manager = Provider.of<ExerciseManager>(context);
@@ -90,6 +92,7 @@ class _TranslateExerciseState extends State<TranslateExercise> {
         ),
         const SizedBox(height: 30),
         TextField(
+          enabled: !showSolution,
           controller: answer,
           onChanged: (_) {
             if (errorText != null) {
@@ -102,26 +105,48 @@ class _TranslateExerciseState extends State<TranslateExercise> {
             border: const OutlineInputBorder(),
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-            suffix: ElevatedButton(
-              child: const Text("Next"),
-              onPressed: () async {
-                if (errorText == null && answer.text.isNotEmpty) {
-                  if (widget.isCorrect(answer.text)) {
-                    manager.stopExercise();
-                    await showDialog(
-                      builder: (_) => const SuccessDialog(),
-                      barrierDismissible: false,
-                      context: context,
-                    );
-                    answer.text = "";
-                    manager.update();
-                  } else {
-                    setState(() => errorText = randomElement(errorTexts));
-                  }
-                }
-              },
-            ),
+            suffix: !showSolution
+                ? ElevatedButton(
+                    child: const Text("Next"),
+                    onPressed: () async {
+                      if (errorText == null && answer.text.isNotEmpty) {
+                        if (widget.isCorrect(answer.text)) {
+                          manager.stopExercise();
+                          await showDialog(
+                            builder: (_) => const SuccessDialog(),
+                            barrierDismissible: false,
+                            context: context,
+                          );
+                          answer.text = "";
+                          manager.update();
+                        } else {
+                          setState(() => errorText = randomElement(errorTexts));
+                        }
+                      }
+                    },
+                  )
+                : null,
           ),
+        ),
+        const SizedBox(height: 30),
+        OutlinedButton(
+          child: showSolution ? const Text("Next") : const Text("Solution"),
+          onPressed: () {
+            if (!showSolution) {
+              setState(() {
+                showSolution = true;
+                answer.text = widget.vocabulary.rootD;
+              });
+            } else {
+              setState(() {
+                widget.task.answers.clear();
+                showSolution = false;
+                manager.stopExercise();
+                answer.text = "";
+                manager.update();
+              });
+            }
+          },
         ),
       ],
     );
